@@ -1,359 +1,138 @@
-/* =========================================
-   MOBILE MENU
-========================================= */
-
-const menuToggle =
-    document.getElementById("menuToggle");
-
-const navMenu =
-    document.getElementById("navMenu");
-
-menuToggle.addEventListener("click", () => {
-
-    navMenu.classList.toggle("active");
-
-    const icon =
-        menuToggle.querySelector("i");
-
-    if (navMenu.classList.contains("active")) {
-
-        icon.classList.remove("fa-bars");
-
-        icon.classList.add("fa-xmark");
-
-    } else {
-
-        icon.classList.remove("fa-xmark");
-
-        icon.classList.add("fa-bars");
-
+/* Portfolio interactions. No build tools or API keys required. */
+(() => {
+  "use strict";
+  const menuToggle = document.getElementById("menuToggle");
+  const navMenu = document.getElementById("navMenu");
+  const setMenu = open => {
+    if (!menuToggle || !navMenu) return;
+    navMenu.classList.toggle("active", open);
+    menuToggle.setAttribute("aria-expanded", String(open));
+    menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    const icon = menuToggle.querySelector("i");
+    if (icon) icon.className = open ? "fas fa-xmark" : "fas fa-bars";
+  };
+  menuToggle?.addEventListener("click", () => setMenu(!navMenu.classList.contains("active")));
+  document.querySelectorAll("#navMenu a").forEach(link => link.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && navMenu?.classList.contains("active")) {
+      setMenu(false); menuToggle.focus();
     }
+  });
+  const themeToggle = document.getElementById("themeToggle");
+  const setTheme = dark => {
+    document.body.classList.toggle("dark", dark);
+    if (!themeToggle) return;
+    themeToggle.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+    themeToggle.setAttribute("aria-pressed", String(dark));
+    const icon = themeToggle.querySelector("i");
+    if (icon) icon.className = dark ? "fas fa-sun" : "fas fa-moon";
+  };
+  try { setTheme(localStorage.getItem("portfolio-theme") === "dark"); }
+  catch (_) { setTheme(false); }
+  themeToggle?.addEventListener("click", () => {
+    const dark = !document.body.classList.contains("dark");
+    setTheme(dark);
+    try { localStorage.setItem("portfolio-theme", dark ? "dark" : "light"); }
+    catch (_) { /* The theme still works when storage is unavailable. */ }
+  });
 
-});
-
-
-/* Close mobile menu after clicking */
-
-document.querySelectorAll("#navMenu a")
-.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        navMenu.classList.remove("active");
-
-        const icon =
-            menuToggle.querySelector("i");
-
-        icon.classList.remove("fa-xmark");
-
-        icon.classList.add("fa-bars");
-
+  /* All projects are in the HTML. Search and filters need no network request. */
+  const cards = [...document.querySelectorAll("#projectsGrid .project-card")];
+  const filters = [...document.querySelectorAll(".project-filters .filter")];
+  const search = document.getElementById("projectSearch");
+  const count = document.getElementById("projectCount");
+  const empty = document.getElementById("projectEmpty");
+  const showAll = document.getElementById("showAllProjects");
+  let category = "featured";
+  const applyFilters = () => {
+    const words = (search?.value || "").trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+    let visible = 0;
+    cards.forEach(card => {
+      const categories = (card.dataset.category || "").split(" ");
+      const matches = (category === "all" || categories.includes(category)) &&
+        words.every(word => (card.dataset.search || "").includes(word));
+      card.hidden = !matches;
+      if (matches) { card.classList.add("visible"); visible += 1; }
     });
-
-});
-
-
-/* =========================================
-   DARK MODE
-========================================= */
-
-const themeToggle =
-    document.getElementById("themeToggle");
-
-const themeIcon =
-    themeToggle.querySelector("i");
-
-
-const savedTheme =
-    localStorage.getItem("portfolio-theme");
-
-
-if (savedTheme === "dark") {
-
-    document.body.classList.add("dark");
-
-    themeIcon.classList.remove("fa-moon");
-
-    themeIcon.classList.add("fa-sun");
-
-}
-
-
-themeToggle.addEventListener("click", () => {
-
-    document.body.classList.toggle("dark");
-
-    const dark =
-        document.body.classList.contains("dark");
-
-    localStorage.setItem(
-        "portfolio-theme",
-        dark ? "dark" : "light"
-    );
-
-    if (dark) {
-
-        themeIcon.classList.remove("fa-moon");
-
-        themeIcon.classList.add("fa-sun");
-
-    } else {
-
-        themeIcon.classList.remove("fa-sun");
-
-        themeIcon.classList.add("fa-moon");
-
-    }
-
-});
-
-
-/* =========================================
-   PROJECT FILTER
-========================================= */
-
-const filters =
-    document.querySelectorAll(".filter");
-
-const projects =
-    document.querySelectorAll(".project-card");
-
-
-filters.forEach(filter => {
-
-    filter.addEventListener("click", () => {
-
-        filters.forEach(button => {
-
-            button.classList.remove("active");
-
-        });
-
-        filter.classList.add("active");
-
-        const category =
-            filter.dataset.filter;
-
-
-        projects.forEach(project => {
-
-            const categories =
-                project.dataset.category
-                    .split(" ");
-
-
-            if (
-                category === "all" ||
-                categories.includes(category)
-            ) {
-
-                project.style.display = "block";
-
-                setTimeout(() => {
-
-                    project.style.opacity = "1";
-
-                    project.style.transform =
-                        "translateY(0)";
-
-                }, 50);
-
-            } else {
-
-                project.style.opacity = "0";
-
-                project.style.transform =
-                    "translateY(15px)";
-
-                setTimeout(() => {
-
-                    project.style.display = "none";
-
-                }, 250);
-
-            }
-
-        });
-
+    filters.forEach(button => {
+      const active = button.dataset.filter === category;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
     });
+    if (count) count.textContent = `${visible} of ${cards.length} repositories${category === "featured" ? " · Featured work" : ""}`;
+    if (empty) empty.hidden = visible !== 0;
+    if (showAll) showAll.hidden = category === "all" && words.length === 0;
+  };
+  const resetFilters = () => {
+    category = "all";
+    if (search) search.value = "";
+    applyFilters();
+  };
+  filters.forEach(button => button.addEventListener("click", () => {
+    category = button.dataset.filter; applyFilters();
+  }));
+  search?.addEventListener("input", () => {
+    // Search beyond the initial featured selection.
+    if (category === "featured" && search.value.trim()) category = "all";
+    applyFilters();
+  });
+  search?.addEventListener("keydown", event => {
+    if (event.key === "Escape") { search.value = ""; applyFilters(); }
+  });
+  document.getElementById("clearProjectFilters")?.addEventListener("click", () => {
+    resetFilters(); search?.focus();
+  });
+  showAll?.addEventListener("click", () => { resetFilters(); search?.focus(); });
+  if (cards.length) {
+    document.querySelector(".project-tools")?.removeAttribute("hidden");
+    applyFilters();
+  }
 
-});
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const counters = [...document.querySelectorAll("[data-count]")];
+  const finishCounter = counter => {
+    counter.textContent = counter.dataset.count + (counter.dataset.suffix ?? "+");
+  };
+  if ("IntersectionObserver" in window && !reducedMotion) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const counter = entry.target;
+        const target = Number(counter.dataset.count);
+        let value = 0;
+        const tick = () => {
+          value += Math.max(1, Math.ceil(target / 24));
+          if (value >= target) finishCounter(counter);
+          else { counter.textContent = value; requestAnimationFrame(tick); }
+        };
+        tick(); observer.unobserve(counter);
+      });
+    }, {threshold: 0.5});
+    counters.forEach(counter => observer.observe(counter));
+  } else counters.forEach(finishCounter);
 
-
-/* =========================================
-   COUNTER ANIMATION
-========================================= */
-
-const counters =
-    document.querySelectorAll("[data-count]");
-
-
-const counterObserver =
-    new IntersectionObserver(
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (!entry.isIntersecting)
-                    return;
-
-                const counter =
-                    entry.target;
-
-                const target =
-                    Number(
-                        counter.dataset.count
-                    );
-
-                let current = 0;
-
-                const increment =
-                    Math.max(
-                        1,
-                        Math.ceil(target / 30)
-                    );
-
-                const update = () => {
-
-                    current += increment;
-
-                    if (current >= target) {
-
-                        counter.textContent =
-                            target + "+";
-
-                        return;
-
-                    }
-
-                    counter.textContent =
-                        current;
-
-                    requestAnimationFrame(update);
-
-                };
-
-                update();
-
-                counterObserver.unobserve(
-                    counter
-                );
-
-            });
-
-        },
-        {
-            threshold: 0.5
-        }
-    );
-
-
-counters.forEach(counter => {
-
-    counterObserver.observe(counter);
-
-});
-
-
-/* =========================================
-   SCROLL REVEAL
-========================================= */
-
-const revealElements =
-    document.querySelectorAll(
-        ".project-card, .skill-card, .fact, .timeline-item"
-    );
-
-
-const revealObserver =
-    new IntersectionObserver(
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.classList.add(
-                        "visible"
-                    );
-
-                    revealObserver.unobserve(
-                        entry.target
-                    );
-
-                }
-
-            });
-
-        },
-        {
-            threshold: 0.12
-        }
-    );
-
-
-revealElements.forEach(element => {
-
-    revealObserver.observe(element);
-
-});
-
-
-/* =========================================
-   FOOTER YEAR
-========================================= */
-
-document.getElementById("year")
-    .textContent =
-    new Date().getFullYear();
-
-
-/* =========================================
-   ACTIVE NAVIGATION
-========================================= */
-
-const sections =
-    document.querySelectorAll("section[id]");
-
-const navLinks =
-    document.querySelectorAll("nav a");
-
-
-window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const sectionTop =
-            section.offsetTop - 120;
-
-        if (
-            window.scrollY >= sectionTop
-        ) {
-
-            current =
-                section.getAttribute("id");
-
-        }
-
-    });
-
-
+  const revealElements = [...document.querySelectorAll(".skill-card, .fact, .timeline-item")];
+  if ("IntersectionObserver" in window && !reducedMotion) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
+      });
+    }, {threshold: 0.12});
+    revealElements.forEach(element => observer.observe(element));
+  } else revealElements.forEach(element => element.classList.add("visible"));
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+  const sections = [...document.querySelectorAll("section[id]")];
+  const navLinks = [...document.querySelectorAll("#navMenu a")];
+  const updateNavigation = () => {
+    let current = "home";
+    sections.forEach(section => { if (window.scrollY >= section.offsetTop - 140) current = section.id; });
     navLinks.forEach(link => {
-
-        link.style.color = "";
-
-        if (
-            link.getAttribute("href") ===
-            "#" + current
-        ) {
-
-            link.style.color =
-                "var(--accent)";
-
-        }
-
+      const active = link.getAttribute("href") === "#" + current;
+      link.style.color = active ? "var(--accent)" : "";
+      if (active) link.setAttribute("aria-current", "location"); else link.removeAttribute("aria-current");
     });
-
-});
+  };
+  window.addEventListener("scroll", updateNavigation, {passive: true});
+  updateNavigation();
+})();

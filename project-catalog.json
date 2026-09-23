@@ -1,0 +1,374 @@
+[
+  {
+    "repo": "Shop_Asistant",
+    "title": "Shop Assistant & Stock Records",
+    "category": "business data apps",
+    "status": "Desktop application",
+    "tools": [
+      "Python",
+      "SQLite",
+      "CustomTkinter",
+      "Excel"
+    ],
+    "description": "Created for my spaza shop to make daily product recording easier. Records costs, quantities and selling prices, calculates product margins, flags low stock and exports Excel summaries.",
+    "featured": true,
+    "visual": "sales",
+    "mark": "STOCK",
+    "purpose": "Make small-shop records easier to capture and review, with useful stock and margin information in one place.",
+    "features": [
+      "Product entry, search and an overview of recorded stock.",
+      "Cost and selling-price calculations, low-stock checks and profit charts.",
+      "Excel exports and a database backup function."
+    ],
+    "note": "A Python desktop application. The repository includes the application source and a Windows installer configuration."
+  },
+  {
+    "repo": "customer-trends-data-analysis-SQL-Python-PowerBI",
+    "title": "Customer Shopping Behaviour Analysis",
+    "category": "data business learning",
+    "status": "Learning project · fork",
+    "tools": [
+      "Python",
+      "SQL",
+      "Power BI"
+    ],
+    "description": "A guided retail analytics project covering data preparation, customer analysis and dashboard reporting. This repository is my fork of Amlan Mohanty’s learning project.",
+    "featured": true,
+    "visual": "dashboard",
+    "mark": "INSIGHTS",
+    "purpose": "Explore how an analyst turns shopping data into questions about customer segments, purchase patterns and loyalty.",
+    "features": [
+      "A Python notebook for data exploration and preparation.",
+      "SQL queries for customer and purchasing analysis.",
+      "A Power BI dashboard, written report and presentation."
+    ],
+    "note": "Learning focus: understanding and reproducing the full analysis workflow. The original project is credited below.",
+    "credit": "amlanmohanty1/customer-trends-data-analysis-SQL-Python-PowerBI"
+  },
+  {
+    "repo": "mat442.github.io",
+    "title": "Mathematics of Finance Study App",
+    "category": "web education finance",
+    "status": "Interactive study tool",
+    "tools": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "description": "An interactive MAT442 revision tool combining finance notes with calculators for interest, annuities, loan repayment and bond pricing. Also includes probability and stochastic-process material.",
+    "featured": true,
+    "visual": "finance",
+    "mark": "MAT442",
+    "purpose": "Bring finance revision notes, worked concepts and interactive calculations into one browser-based study resource.",
+    "features": [
+      "Interest and annuity calculations.",
+      "Loan amortisation schedules and bond-pricing inputs.",
+      "Topic-based revision content for financial mathematics."
+    ],
+    "note": "An educational revision resource with topic navigation and interactive calculation examples."
+  },
+  {
+    "repo": "OIBSIP",
+    "title": "Spam Detection & Data Science Practice",
+    "category": "data learning",
+    "status": "Notebook experiments",
+    "tools": [
+      "Python",
+      "Pandas",
+      "Scikit-learn",
+      "Jupyter"
+    ],
+    "description": "Explores text classification using TF–IDF, Naive Bayes and logistic regression. Includes message-cleaning notebooks and datasets for introductory data-science exercises.",
+    "featured": true,
+    "visual": "fraud",
+    "mark": "TEXT / ML",
+    "purpose": "Practise turning raw message text into features that a machine-learning model can use to distinguish spam from ordinary messages.",
+    "features": [
+      "Message cleaning and exploratory word and sentence counts.",
+      "TF–IDF text features and classification experiments.",
+      "Additional datasets covering advertising, Iris, unemployment and car data."
+    ],
+    "note": "An exploratory notebook project focused on text preparation, feature extraction and classification."
+  },
+  {
+    "repo": "Student-Residence-Billing-System-",
+    "title": "Student Residence Billing Interface",
+    "category": "web education business",
+    "status": "Interface prototype",
+    "tools": [
+      "HTML",
+      "CSS",
+      "Bootstrap"
+    ],
+    "description": "A student-residence interface covering applications, room information and billing details, with separate student and administrator screens. Includes requirements and system-design documents.",
+    "featured": true,
+    "visual": "research",
+    "mark": "CAMPUS",
+    "purpose": "Explore how students and residence administrators could manage accommodation information and view payment details.",
+    "features": [
+      "Student application, profile and room-information screens.",
+      "Administrative screens for rooms, students and records.",
+      "Billing interface plus requirements and design documentation."
+    ],
+    "note": "The public files demonstrate the front-end interface and system design. Backend billing integration remains a next step."
+  },
+  {
+    "repo": "MyStudyApp",
+    "title": "MyStudyApp — Course Notes & Questions",
+    "category": "web education apps",
+    "status": "Study-platform prototype",
+    "tools": [
+      "Python",
+      "Flask",
+      "SQLite"
+    ],
+    "description": "A study platform documented around user accounts, courses, notes and questions. The repository contains a project archive and a guide to setting up the Flask application.",
+    "featured": true,
+    "visual": "sentiment",
+    "mark": "LEARN",
+    "purpose": "Organise learning content around courses and sections so students can find notes and questions in a structured place.",
+    "features": [
+      "The README describes registration and sign-in routes.",
+      "Course, section, notes and questions endpoints are documented.",
+      "Database-migration setup and offline-caching behaviour are explained."
+    ],
+    "note": "The project is distributed as a ZIP archive with a README covering setup, database migrations and offline caching."
+  },
+  {
+    "repo": "Sakhelwe-MS-Investment-Inventory-and-Loan-Management-System.",
+    "title": "Sakhelwe — Inventory & Loan Management",
+    "category": "business planning",
+    "status": "Project in development",
+    "tools": [
+      "Inventory",
+      "Loans",
+      "Business requirements"
+    ],
+    "description": "An ongoing business-system project for chicken and pig stock, customer loans and monthly cash reporting. The public repository currently documents the business requirements.",
+    "visual": "sales",
+    "mark": "SAKHELWE",
+    "purpose": "Connect stock records, delivery notes, receipts and customer histories so the business can review its daily operations.",
+    "features": [
+      "Planned stock and customer-loan records.",
+      "Planned delivery notes, receipts and transaction histories.",
+      "Planned cash tracking and monthly profit reporting."
+    ],
+    "note": "Public development stage: business requirements documented; application source is still to be published."
+  },
+  {
+    "repo": "Sikhwama-health",
+    "title": "Sikhwama Health — Django Foundation",
+    "category": "web finance planning",
+    "status": "Early development",
+    "tools": [
+      "Python",
+      "Django"
+    ],
+    "description": "The initial Django structure for Sikhwama Health, organised into core and health apps. The public models and views are starter files awaiting application features.",
+    "visual": "sentiment",
+    "mark": "HEALTH"
+  },
+  {
+    "repo": "log-in-system-with-django",
+    "title": "Django Authentication Practice",
+    "category": "web learning apps",
+    "status": "Learning prototype",
+    "tools": [
+      "Python",
+      "Django",
+      "SQLite"
+    ],
+    "description": "A practice project exploring registration, sign-in, form handling and Django authentication. Includes page templates and draft authentication views, with further work needed on the flows.",
+    "visual": "fraud",
+    "mark": "AUTH"
+  },
+  {
+    "repo": "edu-platform",
+    "title": "Education Platform Landing Page",
+    "category": "web education learning",
+    "status": "Front-end concept",
+    "tools": [
+      "HTML",
+      "CSS"
+    ],
+    "description": "A landing-page exercise for an education platform, with a styled welcome section and a registration call to action. Focuses on page layout rather than a complete learning system.",
+    "visual": "sentiment",
+    "mark": "EDU"
+  },
+  {
+    "repo": "firstfrontend",
+    "title": "Eswatini Website Practice",
+    "category": "web learning",
+    "status": "Front-end practice",
+    "tools": [
+      "HTML",
+      "CSS",
+      "Bootstrap"
+    ],
+    "description": "An early website exercise centred on Eswatini. The files include a main page, an economy page and a login-page design, exploring navigation, images and Bootstrap layouts.",
+    "visual": "research",
+    "mark": "ESWATINI"
+  },
+  {
+    "repo": "unorderedArrayList-",
+    "title": "Unordered Array List in C++",
+    "category": "programming learning",
+    "status": "Data-structure exercise",
+    "tools": [
+      "C++",
+      "Arrays"
+    ],
+    "description": "An array-based list exercise with insert, delete, empty/full checks and data display. Uses separate header, implementation and application files to practise C++ structure.",
+    "visual": "dashboard",
+    "mark": "C++"
+  },
+  {
+    "repo": "mpumelelo.github.io",
+    "title": "Finance Study App — Alternate Version",
+    "category": "web education finance",
+    "status": "Study-tool version",
+    "tools": [
+      "HTML",
+      "JavaScript"
+    ],
+    "description": "Another version of the MAT442 mathematics-of-finance study app, bringing together revision content, interest calculations, amortisation and bond-pricing examples.",
+    "visual": "finance",
+    "mark": "FINANCE"
+  },
+  {
+    "repo": "mpumelelo810.github.io",
+    "title": "Personal Portfolio Website",
+    "category": "web",
+    "status": "Portfolio website",
+    "tools": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "description": "My portfolio brings together software examples, skills linked to projects and a searchable catalogue of public repositories, with light and dark themes.",
+    "visual": "sales",
+    "mark": "MP."
+  },
+  {
+    "repo": "Task-Tracker",
+    "title": "Command-Line Task Tracker",
+    "category": "programming planning",
+    "status": "Project outline",
+    "tools": [
+      "CLI concept",
+      "JSON storage"
+    ],
+    "description": "A specification for a command-line tool to add, update, delete and filter tasks, with progress states stored in JSON. The public repository currently contains the project outline.",
+    "visual": "dashboard",
+    "mark": "TASKS"
+  },
+  {
+    "repo": "University-of-eSwatini-voting-system",
+    "title": "UNESWA Voting System",
+    "category": "web planning",
+    "status": "Repository started",
+    "tools": [
+      "Voting-system concept"
+    ],
+    "description": "A repository started for a university voting-system idea. Its published content currently consists of a README title; the application implementation has not yet been added.",
+    "visual": "research",
+    "mark": "UNESWA"
+  },
+  {
+    "repo": "online-savings-account-with-automated-functionalities",
+    "title": "Automated Savings Account Concept",
+    "category": "finance planning",
+    "status": "Repository started",
+    "tools": [
+      "Savings concept"
+    ],
+    "description": "A repository named for an online savings-account project with automated functions. No source files are currently published in this public repository.",
+    "visual": "finance",
+    "mark": "SAVINGS"
+  },
+  {
+    "repo": "Mpumelelo-Dlamini-Portfolio",
+    "title": "Portfolio Development Workspace",
+    "category": "web planning",
+    "status": "Repository started",
+    "tools": [
+      "Portfolio concept"
+    ],
+    "description": "A workspace intended for a data-analysis and full-stack-development portfolio. This repository currently has no published implementation; the active portfolio is in mpumelelo810.github.io.",
+    "visual": "sales",
+    "mark": "PORTFOLIO"
+  },
+  {
+    "repo": "LinkedListExample",
+    "title": "Linked List Exercise",
+    "category": "programming planning",
+    "status": "Repository started",
+    "tools": [
+      "Data structures"
+    ],
+    "description": "A repository named for a linked-list programming exercise. Source files have not yet been published.",
+    "visual": "dashboard",
+    "mark": "LISTS"
+  },
+  {
+    "repo": "intro-html",
+    "title": "Introduction to HTML",
+    "category": "web learning",
+    "status": "GitHub Learning Lab",
+    "tools": [
+      "HTML fundamentals"
+    ],
+    "description": "A GitHub Learning Lab repository for HTML fundamentals. Its published files contain the introductory course README and licence.",
+    "visual": "research",
+    "mark": "HTML"
+  },
+  {
+    "repo": "markdown-portfolio",
+    "title": "Markdown Portfolio Practice",
+    "category": "web learning",
+    "status": "GitHub Learning Lab",
+    "tools": [
+      "Markdown",
+      "Site configuration"
+    ],
+    "description": "A learning exercise for communicating with Markdown and preparing a simple portfolio. Contains a Markdown index, site configuration and GitHub course instructions.",
+    "visual": "sentiment",
+    "mark": "MD"
+  },
+  {
+    "repo": "hello-github-actions",
+    "title": "GitHub Actions Learning Lab",
+    "category": "programming learning",
+    "status": "Course repository",
+    "tools": [
+      "GitHub Actions"
+    ],
+    "description": "An introductory GitHub course repository about actions and workflow files. The public content currently includes the course instructions and licence.",
+    "visual": "fraud",
+    "mark": "ACTIONS"
+  },
+  {
+    "repo": "mpumelelo810",
+    "title": "GitHub Profile Configuration",
+    "category": "other planning",
+    "status": "Profile workspace",
+    "tools": [
+      "GitHub profile"
+    ],
+    "description": "A workspace intended for GitHub profile configuration. No configuration files have been added yet.",
+    "visual": "sales",
+    "mark": "PROFILE"
+  },
+  {
+    "repo": "mpumelelomancoba-gmail.com",
+    "title": "Personal Repository Workspace",
+    "category": "other planning",
+    "status": "Empty workspace",
+    "tools": [
+      "Repository setup"
+    ],
+    "description": "An empty public repository. No project functionality is described until source files or documentation are added.",
+    "visual": "dashboard",
+    "mark": "WORKSPACE"
+  }
+]
