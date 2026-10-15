@@ -1800,3 +1800,62 @@ body.dark .solution-meta > span:first-child { color: #63e0b1; }
   .contact-section { padding-left: 20px; padding-right: 20px; }
   .research-content h2 { letter-spacing: -1.8px; }
 }
+
+
+/* =========================================
+   FEATURED MACHINE-LEARNING CASE STUDY
+========================================= */
+.case-study-feature {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 22px;
+    margin: 28px 0 36px;
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: linear-gradient(115deg, var(--surface), var(--surface-2));
+    box-shadow: var(--shadow);
+}
+.case-study-feature-icon {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+    color: var(--accent);
+    font-size: 1.55rem;
+}
+.case-study-feature-label {
+    color: var(--accent);
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+.case-study-feature-copy h3 {
+    margin: 7px 0;
+    font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+    letter-spacing: -.025em;
+}
+.case-study-feature-copy p {
+    max-width: 720px;
+    color: var(--muted);
+}
+.case-study-feature-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    white-space: nowrap;
+}
+@media (max-width: 760px) {
+    .case-study-feature {
+        grid-template-columns: 48px minmax(0, 1fr);
+        gap: 16px;
+        padding: 20px;
+    }
+    .case-study-feature-icon { width: 48px; height: 48px; border-radius: 14px; }
+    .case-study-feature-copy { grid-column: 1 / -1; }
+    .case-study-feature-actions { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; white-space: normal; }
+}
