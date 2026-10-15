@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A case study by Mpumelelo Dlamini on FILING and PAYMENT classification, ensemble machine learning, leakage-aware features, and temporal validation for tax compliance risk support.">
+  <meta name="author" content="Mpumelelo Mancoba Dlamini">
+  <title>FILING &amp; PAYMENT ML Case Study | Mpumelelo Dlamini</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .case-hero{padding:145px 24px 72px;background:radial-gradient(ellipse at 85% 15%,color-mix(in srgb,var(--accent) 17%,transparent),transparent 42%),var(--bg)}
+    .case-wrap{max-width:1040px;margin:auto}
+    .case-kicker{display:inline-flex;gap:9px;align-items:center;color:var(--accent);font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+    .case-hero h1{max-width:850px;margin:18px 0;font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.05;letter-spacing:-.055em}
+    .case-hero h1 span{color:var(--accent)}
+    .case-lede{max-width:760px;color:var(--muted);font-size:1.12rem}
+    .case-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .case-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:42px}
+    .case-stat,.case-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+    .case-stat strong{display:block;font-size:1.6rem;letter-spacing:-.03em}
+    .case-stat span{display:block;color:var(--muted);font-size:.88rem;margin-top:5px}
+    .case-body{max-width:1040px;margin:0 auto;padding:18px 24px 90px}
+    .case-section{padding:34px 0;border-bottom:1px solid var(--border)}
+    .case-section h2{font-size:clamp(1.55rem,3vw,2.2rem);letter-spacing:-.035em;margin-bottom:14px}
+    .case-section h3{font-size:1.1rem;margin:22px 0 8px}
+    .case-section p,.case-section li{color:var(--muted)}
+    .case-section p{margin:10px 0}
+    .case-section ul,.case-section ol{padding-left:22px;margin:12px 0}
+    .case-section li{padding:4px 0}
+    .case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px}
+    .case-panel h3{margin-top:0}
+    .case-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .case-tags span{border:1px solid var(--border);background:var(--surface-2);border-radius:999px;padding:5px 10px;font-size:.8rem}
+    .case-table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:14px;margin:18px 0}
+    .case-table{width:100%;border-collapse:collapse;min-width:460px;background:var(--surface)}
+    .case-table th,.case-table td{text-align:left;padding:13px 15px;border-bottom:1px solid var(--border)}
+    .case-table th{font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+    .case-table td{font-variant-numeric:tabular-nums}
+    .case-note{border-left:3px solid var(--accent);padding:14px 18px;background:var(--surface-2);border-radius:0 12px 12px 0;margin:18px 0}
+    .case-note p{margin:0}
+    .case-cta{margin-top:34px}
+    @media(max-width:680px){.case-stats,.case-grid{grid-template-columns:1fr}.case-hero{padding-top:120px}.case-stat,.case-panel{padding:18px}}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="navbar">
+  <div class="nav-container">
+    <a href="index.html#home" class="logo">MP<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="index.html#about">About</a><a href="index.html#skills">Skills</a><a href="index.html#projects">Projects</a><a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="nav-actions"><a class="btn btn-secondary" href="index.html#projects">Portfolio</a></div>
+  </div>
+</header>
+<main id="main">
+  <section class="case-hero">
+    <div class="case-wrap">
+      <div class="case-kicker">Applied machine learning · Risk analytics</div>
+      <h1>Predicting filing and payment outcomes with <span>ensemble learning.</span></h1>
+      <p class="case-lede">A tax-compliance classification case study exploring how structured obligation data, careful feature preparation, chronological validation, and blended model probabilities can support risk-aware prioritization.</p>
+      <div class="case-actions">
+        <a class="btn btn-primary" href="https://github.com/mpumelelo810/Ml-datacleaning" target="_blank" rel="noopener noreferrer">Explore repository ↗</a>
+        <a class="btn btn-secondary" href="https://github.com/mpumelelo810/Ml-datacleaning/blob/main/CASE_STUDY.md" target="_blank" rel="noopener noreferrer">Read full technical case study ↗</a>
+      </div>
+      <div class="case-stats" aria-label="Project summary">
+        <div class="case-stat"><strong>91,984</strong><span>Training rows in the working dataset</span></div>
+        <div class="case-stat"><strong>16,751</strong><span>Test rows in the working dataset</span></div>
+        <div class="case-stat"><strong>2 targets</strong><span>FILING and PAYMENT, modelled separately</span></div>
+      </div>
+    </div>
+  </section>
+  <div class="case-body">
+    <section class="case-section">
+      <h2>01 · The business problem</h2>
+      <p>Revenue and compliance teams need to decide which obligations may need earlier attention. This project explores whether a model can estimate the probability of different filing and payment outcomes, helping an analyst prioritize follow-up rather than treating every case identically.</p>
+      <div class="case-note"><p><strong>Intended use:</strong> decision support for analysts. A predicted risk class is not proof of future behaviour and should never be treated as an automatic enforcement decision.</p></div>
+    </section>
+    <section class="case-section">
+      <h2>02 · Data preparation and leakage awareness</h2>
+      <p>The workflow loads local CSV files, checks their dimensions and labels, and uses only features shared by the training and test sets. It excludes identifiers, target columns, and potential filing/payment outcome-date fields from the predictor set.</p>
+      <ul>
+        <li>Derives year, month, day, and weekday from start, end, and obligation due dates.</li>
+        <li>Creates period-length and end-to-due-date interval features.</li>
+        <li>Imputes missing predictor values and one-hot encodes categorical variables.</li>
+        <li>Aligns class-probability columns before scoring and submission generation.</li>
+      </ul>
+      <div class="case-tags"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>Feature engineering</span><span>Data quality</span></div>
+    </section>
+    <section class="case-section">
+      <h2>03 · Baseline versus taxpayer-history features</h2>
+      <div class="case-grid">
+        <div class="case-panel">
+          <h3>Baseline · implemented</h3>
+          <p>Common taxpayer and obligation attributes plus engineered calendar and date-interval features. This is what the currently checked-in notebook can reproduce.</p>
+        </div>
+        <div class="case-panel">
+          <h3>History-enhanced · explored separately</h3>
+          <p>Prior-only behaviour features such as historical on-time rates, late-payment patterns, and previous obligation counts. The history pipeline must be restored and rerun before claiming a performance uplift.</p>
+        </div>
+      </div>
+      <p>For a fair comparison, both feature sets must use the same chronological holdout and only information available before each prediction point. Historical outcomes from the current or future obligation must never leak into its features.</p>
+    </section>
+    <section class="case-section">
+      <h2>04 · Model comparison and ensemble design</h2>
+      <div class="case-grid">
+        <div class="case-panel"><h3>Extra Trees</h3><p>A bagging-based tree ensemble used to capture nonlinear patterns and interactions.</p></div>
+        <div class="case-panel"><h3>XGBoost and CatBoost</h3><p>Boosted-tree approaches compared with Extra Trees. Each produces class probabilities for probability-based evaluation and potential blending.</p></div>
+      </div>
+      <p>The notebook uses chronological validation and searches non-negative blend weights. Probability alignment and normalization are checked before log-loss evaluation. A more complex ensemble is only useful if it improves reliable out-of-time validation.</p>
+    </section>
+    <section class="case-section">
+      <h2>05 · Validation evidence</h2>
+      <p>A previous experiment recorded the following PAYMENT blend results. They are included transparently as historical evidence, not as scores reproduced by the currently committed Extra Trees/XGBoost/CatBoost notebook.</p>
+      <div class="case-table-wrap">
+        <table class="case-table">
+          <thead><tr><th>Earlier experiment</th><th>PAYMENT log loss</th></tr></thead>
+          <tbody>
+            <tr><td>Equal-weight Extra Trees / HistGradientBoosting reference</td><td>1.179357</td></tr>
+            <tr><td>50% Extra Trees / 50% HistGradientBoosting</td><td>1.175826</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Lower log loss is better. A comparable FILING score is not available in the notes used for this page, so no number is claimed. The definitive scorecard should be refreshed from a rerun that records the cutoff, class counts, per-model results, ensemble results, and baseline-versus-history comparison.</p>
+      <div class="case-note"><p><strong>Validation caveat:</strong> weights selected on the same holdout used to report results can make performance look better than it generalizes. Use a separate tuning partition or rolling/forward-chaining validation for a stronger estimate.</p></div>
+    </section>
+    <section class="case-section">
+      <h2>06 · Limitations and responsible use</h2>
+      <ul>
+        <li>Class imbalance and missing target labels affect effective sample sizes and make per-class metrics important.</li>
+        <li>Taxpayer behaviour can change over time, so temporal backtesting is essential.</li>
+        <li>The configured validation cutoff must be checked against the true data timeline.</li>
+        <li>The current notebook does not reproduce the earlier taxpayer-history feature pipeline.</li>
+        <li>This is a research/competition workflow, not a deployed tax system. Production use would need monitoring, privacy safeguards, governance, and human review.</li>
+      </ul>
+    </section>
+    <section class="case-section">
+      <h2>07 · Why this project matters for my career</h2>
+      <div class="case-grid">
+        <div class="case-panel"><h3>Junior Data Analyst</h3><p>Demonstrates data inspection, missing-value handling, feature preparation, validation summaries, and honest communication of findings.</p></div>
+        <div class="case-panel"><h3>Risk Analyst</h3><p>Demonstrates probability-based prioritization, time-aware evaluation, class-level error awareness, and responsible decision-support thinking.</p></div>
+        <div class="case-panel"><h3>Financial Engineering</h3><p>Builds relevant foundations in quantitative modelling, probability estimates, ensemble methods, and robust backtesting discipline.</p></div>
+        <div class="case-panel"><h3>Technical communication</h3><p>Shows the ability to explain the business question, modelling choices, evidence, uncertainty, and next steps to both technical and non-technical audiences.</p></div>
+      </div>
+    </section>
+    <section class="case-section">
+      <h2>Explore the work</h2>
+      <p>The notebook is intended to run locally in Jupyter. The source taxpayer data and generated submission files are not published in this portfolio.</p>
+      <div class="case-actions case-cta">
+        <a class="btn btn-primary" href="https://github.com/mpumelelo810/Ml-datacleaning" target="_blank" rel="noopener noreferrer">Open GitHub repository ↗</a>
+        <a class="btn btn-secondary" href="https://github.com/mpumelelo810/Ml-datacleaning/blob/main/FILING_PAYMENT_Ensemble.ipynb" target="_blank" rel="noopener noreferrer">View notebook ↗</a>
+        <a class="btn btn-secondary" href="index.html#contact">Contact me</a>
+      </div>
+    </section>
+  </div>
+</main>
+<footer><div class="footer-container"><div><strong>MP<span>.</span></strong><p>Software projects · Data analysis · Continuous learning</p></div><p>© 2026 Mpumelelo Dlamini.</p></div></footer>
+<script src="script.js"></script>
+</body>
+</html>
