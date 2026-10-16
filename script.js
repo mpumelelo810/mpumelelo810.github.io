@@ -18,7 +18,7 @@
       setMenu(false); menuToggle.focus();
     }
   });
-  // Keep the portfolio in its selected dark-only theme.\n  document.body.classList.add("dark");\n\n  /* All projects are in the HTML. Search and filters need no network request. */
+  /* All projects are in the HTML. Search and filters need no network request. */
   const cards = [...document.querySelectorAll("#projectsGrid .project-card")];
   const filters = [...document.querySelectorAll(".project-filters .filter")];
   const search = document.getElementById("projectSearch");
