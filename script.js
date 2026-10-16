@@ -18,25 +18,7 @@
       setMenu(false); menuToggle.focus();
     }
   });
-  const themeToggle = document.getElementById("themeToggle");
-  const setTheme = dark => {
-    document.body.classList.toggle("dark", dark);
-    if (!themeToggle) return;
-    themeToggle.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
-    themeToggle.setAttribute("aria-pressed", String(dark));
-    const icon = themeToggle.querySelector("i");
-    if (icon) icon.className = dark ? "fas fa-sun" : "fas fa-moon";
-  };
-  try { setTheme(localStorage.getItem("portfolio-theme") === "dark"); }
-  catch (_) { setTheme(false); }
-  themeToggle?.addEventListener("click", () => {
-    const dark = !document.body.classList.contains("dark");
-    setTheme(dark);
-    try { localStorage.setItem("portfolio-theme", dark ? "dark" : "light"); }
-    catch (_) { /* The theme still works when storage is unavailable. */ }
-  });
-
-  /* All projects are in the HTML. Search and filters need no network request. */
+  // Keep the portfolio in its selected dark-only theme.\n  document.body.classList.add("dark");\n\n  /* All projects are in the HTML. Search and filters need no network request. */
   const cards = [...document.querySelectorAll("#projectsGrid .project-card")];
   const filters = [...document.querySelectorAll(".project-filters .filter")];
   const search = document.getElementById("projectSearch");
